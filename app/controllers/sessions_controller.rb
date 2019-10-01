@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     def reset
       session[:page_count] = 0
       # get them back to the page they were on
-      redirect_back fallback_location: toppings_path
+      redirect_to events_path
     end
   
     def new
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       user = User.find_by(username: params[:username])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect_to pizzas_path
+        redirect_to events_path
       else
         flash[:errors] = ["Ya dun goofed."]
         redirect_to login_path

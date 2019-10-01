@@ -1,9 +1,9 @@
 <h1> Events in <%= @location.city %> </h1>
 
 <ul>
-<% @location.events each do |event| %>
+<% @location.events.each do |event| %>
 <li>
-<%= link_to event.name, event_path(@event) %>
+<%= link_to event.title, event_path(@event) %>
 </li>
 <% end %>
 </ul>

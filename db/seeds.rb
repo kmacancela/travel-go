@@ -16,8 +16,9 @@ u1 = User.create(first_name: "Karina", last_name: "Macancela", username: "kmac",
 u2 = User.create(first_name: "Kim", last_name: "Jones", username: "kjones", password: "kjones")
 u3 = User.create(first_name: "James", last_name: "Kim", username: "james", password: "james")
 
+
 l1 = Location.create(city: "New York", state: "New York", country: "USA", zipcode: 10011)
-l1 = Location.create(city: "New York", state: "New York", country: "USA", zipcode: 10011)
+l2 = Location.create(city: "Miami", state: "Florida", country: "USA", zipcode: 32963)
 
 cat1 = Category.create(name: "Music")
 cat2 = Category.create(name: "Art")

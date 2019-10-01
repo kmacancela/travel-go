@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
     end
 
     def show
-        @location = Location.find(params.require(:location).permit(:city, :state, :country, :zipcode))
+        @location = Location.find(params[:id])
     end 
 
     

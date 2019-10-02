@@ -9,6 +9,16 @@
             <%= form_for @user do |f| %>
 
                 <div class="form-field">
+                    <%= f.label :first_name %>
+                    <%= f.text_field :first_name, class: 'form-control'%>
+                </div>
+
+                <div class="form-field">
+                    <%= f.label :last_name %>
+                    <%= f.text_field :last_name, class: 'form-control'%>
+                </div>
+
+                <div class="form-field">
                     <%= f.label :username %>
                     <%= f.text_field :username, class: 'form-control'%>
                 </div>

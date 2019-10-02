@@ -1,10 +1,14 @@
 <h1> <%= @event.title %> </h1>
-
+<hr>
+<%= @location.city%> <%= @location.state %> <br>
+<%=@location.country%>
 <p>
-<%= @location.city %>
+    <% if !@current_user.events.include?(@event) %>
 
-<%= button_to "I wanna go!", user_path(@current_user.events), method: :post %>
-
+        <%= button_to "I wanna go!", attendees_path, method: :post %>
+    <% else %>
+        You're going to this event already!
+    <% end %>
 </p>
 
 

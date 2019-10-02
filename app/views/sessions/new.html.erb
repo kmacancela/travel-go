@@ -1,19 +1,38 @@
-<% if flash[:errors] %>
-    <ul>
-      <% flash[:errors].each do |error| %>
-        <li class="error"><%= error %></li>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<div class="container">
+  <center><h1>Log In</h1></center>
+  <% if flash[:errors] %>
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li class="error"><%= error %></li>
+        <% end %>
+      </ul>
+  <% end %>
+
+  <% if @current_user %>
+      Logged In as <%= @current_user.to_s %>ß
+  <% end %>
+
+  <div class = "row">
+    <div class = "col-md-6 col-md-offset-3">
+      <%= form_tag "/login" do %>
+        <div class="form-field">
+          <%= label_tag :username %>
+          <%= text_field_tag :username %>
+        </div>
+
+        <div class="form-field">
+          <%= label_tag :password %>
+          <%= password_field_tag :password %>
+        </div>
+      
+        <%= submit_tag "Log In", class: "btn btn-primary" %>
       <% end %>
-    </ul>
-<% end %>
-
-<%= form_tag "/login" do %>
-  <%= label_tag :username %>
-  <%= text_field_tag :username %>
-
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-  
-  <%= submit_tag %>
-<% end %>
-
-<%= button_to "Sign Up", new_user_path, method: :get %>
+      <p>
+        <%= button_to "Sign Up", new_user_path, method: :get, class: "btn btn-primary" %>
+      </p>
+    </div>
+  </div>
+</div>

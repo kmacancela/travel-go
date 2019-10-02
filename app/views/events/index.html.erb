@@ -1,9 +1,11 @@
 <h1> See events all over the world 🌎 </h1>
-<h1>Hello</h1>
+<hr>
 <ul>
-<% @events.each do |event| %>
-<li>
-<%= link_to event.title, event_path(event) %> - 📍 <%= @event.location.city%>
-</li>
-<% end %>
+    <% @events.each do |event| %>
+        <li>
+        <%= link_to event.title, event_path(event) %> - 📍 <%= event.location.city %>
+        </li>
+    <% end %>
 </ul>
+
+<%= button_to "Search by location", locations_path, method: :get%>

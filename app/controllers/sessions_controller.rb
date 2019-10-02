@@ -15,8 +15,11 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         redirect_to user_path(user)
-      else
-        flash[:errors] = ["Ya dun goofed."]
+      elsif user
+        flash[:errors] = ["Wrong password. Try again."]
+        redirect_to login_path
+      else 
+        flash[:errors] = ["Username not found. Try again or sign up."]
         redirect_to login_path
       end 
     end

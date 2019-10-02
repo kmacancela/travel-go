@@ -2,6 +2,11 @@
 <hr>
 <%= button_to "Add an event", new_event_path, method: :get %>
 <%= button_to "Remove an event", events_path, method: :get %> 
+<%= button_to "Logout", logout_path, method: :delete %> 
+
+<% if @current_user %>
+    Logged In as <%= @current_user.to_s %>
+<% end %>
 
 <% if @user.events != [] %>
 <h3>Your Events</h3>

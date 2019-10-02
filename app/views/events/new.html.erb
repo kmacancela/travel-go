@@ -1,3 +1,40 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<%= render "form" %>
+<div class="container">
+    <center><h1>Add a new event </h1></center>
+
+    <%=  @current_user.id %>
+
+    <div class = "row">
+        <div class = "col-md-6 col-md-offset-3">
+            <%= form_for @event do |f| %>
+                <div class="form-group">
+                    <%= f.label :title %>
+                    <%= f.text_field :title, class: 'form-control'%>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :event_date %>
+                    <%= f.text_field :event_date, class: 'form-control'%>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :start_time %>
+                    <%= f.text_field :start_time, class: 'form-control'%>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :end_time %>
+                    <%= f.text_field :end_time, class: 'form-control'%>
+                </div>
+
+                <div class="form-group">
+                    <%= label @location, :zipcode %>
+                    <%= text_field :zipcode, class: 'form-control'%>
+                </div>
+
+                <%= f.submit "Create my event", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -4,10 +4,11 @@
 <%=@location.country%>
 <p>
     <% if !@current_user.events.include?(@event) %>
-
-        <%= button_to "I wanna go!", attendees_path, method: :post %>
+        
+        <%= button_to "I wanna go!", {:controller => "attendees", :action => "create", :event_id => @event.id}, method: :post %>
     <% else %>
         You're going to this event already!
+        <%= button_to "Remove from my calendar", attendee_path, method: :delete %>
     <% end %>
 </p>
 

@@ -1,0 +1,9 @@
+<h1> All <%= @category.name%> Events </h1>
+
+<ul>
+    <% @category.events.each do |event| %>
+        <li>
+            <%= link_to event.title, event_path(event) %>
+        </li>
+    <% end %>
+</ul>

@@ -4,7 +4,13 @@ class AttendeesController < ApplicationController
     end
 
     def create
-        attendee = Attendee.create(user_id: @current_user.id, event_id: params[:id])
+        attendee = Attendee.create(user_id: @current_user.id, event_id: params[:event_id])
+        redirect_to user_path(@current_user)
+    end
+
+    def destroy
+        attendee = Attendee.find_by(event_id: params[:id])
+        attendee.destroy
         redirect_to user_path(@current_user)
     end
 

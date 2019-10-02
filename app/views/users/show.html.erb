@@ -1,7 +1,7 @@
 <h1> Welcome <%=@user.first_name%> </h1>
 <hr>
 <%= button_to "Add an event", new_event_path, method: :get %>
-<%= button_to "Remove an event", events_path, method: :get %> 
+<%= button_to "View all open event", events_path, method: :get %>
 <%= button_to "Logout", logout_path, method: :delete %> 
 
 <% if @current_user %>

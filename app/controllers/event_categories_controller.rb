@@ -1,2 +1,6 @@
 class EventCategoriesController < ApplicationController
+
+        
+
+
 end

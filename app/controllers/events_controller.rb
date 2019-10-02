@@ -21,9 +21,10 @@ class EventsController < ApplicationController
     end
 
     def create 
+        # byebug
         location = Location.find_by(zipcode: 10011) # Need to fix this
         event = Event.create(events_params.merge(location_id: location.id))
-        category = Category.find_by(name: "Music") # Need to fix this
+        category = Category.find_by(name: "Music") # Need to fix this 
         EventCategory.create(event_id: event.id, category_id: category.id)
         Attendee.create(user_id: @current_user.id, event_id: event.id)
         redirect_to user_path(@current_user)

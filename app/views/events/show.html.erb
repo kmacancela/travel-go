@@ -3,7 +3,7 @@
 <p>
 <%= @location.city %>
 
-<%= button_to "I wanna go!", user_path(@user.events), method: :post %>
+<%= button_to "I wanna go!", user_path(@current_user.events), method: :post %>
 
 </p>
 

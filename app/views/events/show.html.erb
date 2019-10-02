@@ -1,3 +1,10 @@
 <h1> <%= @event.title %> </h1>
 
-<%= button_to "Add to my calendar" %>
+<p>
+<%= @event.location %>
+</p>
+
+
+
+<%= button_to "Add to my list", user_path(@user.events)  %>
+

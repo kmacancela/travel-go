@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :set_page_count
+    # before_action :set_page_count
     before_action :authenticated
     
     helper_method :logged_in?
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.find_by(id: session[:user_id])
     end
   
-    def logged_in?
+    def logged_in? 
       !current_user.nil?
     end
   
@@ -25,9 +25,9 @@ class ApplicationController < ActionController::Base
       # otherwise, show them the page they want
     end
   
-    def set_page_count
-      session[:page_count] ||= 0
-    end
+    # def set_page_count
+    #   session[:page_count] ||= 0
+    # end
   
   end
   

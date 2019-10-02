@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
     skip_before_action :authenticated, only: [:new, :create]
 
-    def reset
-      session[:page_count] = 0
-      # get them back to the page they were on
-      redirect_to events_path
-    end
+    # def reset
+    #   session[:page_count] = 0
+    #   # get them back to the page they were on
+    #   redirect_to events_path
+    # end
   
     def new
   
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
     end
   
     def destroy
-      session.delete(:user_id) #= nil
+      session.delete(:user_id)
       redirect_to login_path
     end
   

@@ -11,7 +11,7 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
-        redirect_to event_path(@event)
+        # redirect_to event_path(@event)
     end
 
     def create 
@@ -27,12 +27,5 @@ class EventsController < ApplicationController
     def destroy
         @event.destroy
     end
-
-    # private
-
-    # def set_event
-    #     Event.find(params[:id])
-    # end
-
 
 end

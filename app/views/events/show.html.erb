@@ -1,39 +1,74 @@
-<h1> <%= @event.title %> </h1>
-<hr>
-<%= button_to "Back to my Profile", user_path(@current_user), method: :get %>
-<%= @location.city%> <%= @location.state %> <br>
-<%=@location.country%>
-<p>
-    <%= @event.content %>
-</p>
-<p>
-    <% if !@current_user.events.include?(@event) %>
+<html>
+    <head>
+        <title>We Out - Your place to find the hippest events near you!</title> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         
-        <%= button_to "I wanna go!", {:controller => "attendees", :action => "create", :event_id => @event.id}, method: :post %>
-    <% else %>
-        You're going to this event already!
-        <%= button_to "Remove from my calendar", attendee_path, method: :delete %>
-    <% end %>
-</p>
+        <style>
+            body{
+                background: url(https://images.unsplash.com/photo-1456743625079-86a97ff8bc86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
+                background-color: #444;
+            }
+            .vertical-offset-100{
+                padding-top:100px;
+            }
+        </style>
+    </head>
+     <body>
+        <div class="container">
+            <div class="row vertical-offset-100">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><center><h1 class="panel-title"><%= @event.title %></h1></center></div>
+                        <div class="panel-body">
 
-<p> 
-    <h3>Comments</h3>
-    <% if @event.posts != [] %>
-        <% @event.posts.each do |post| %>
-            <%= post.content %>
+                            <p>
+                                <% if @current_user.events.include?(@event) %>
+                                    <div class="alert alert-success" role="alert">You're already going to this event!</div>
+                                <% end %>
+                            </p>
 
-            <% if post.user == @current_user %>
-                <%= button_to "Delete my comment", post_path(post), method: :delete %>
-            <% end %>
-
-            <hr>
-        <% end %>
-    <% else %>
-        No comments to show!
-    <% end %>
-    <%= button_to "Add a comment", new_post_path, method: :get %>
-</p>
-
-
-
-
+                            Location: <%= @event.location.city %>
+                            <br><br>
+                            <p><h4><%= @event.content %></h4></p>
+                        </div>
+                    </div>
+                    <% if @current_user.events.include?(@event) %>
+                        <%= button_to "Remove from my calendar", attendee_path, method: :delete, class: "btn btn-md btn-danger btn-block" %>
+                    <% else %>
+                        <%= button_to "I wanna go!", {:controller => "attendees", :action => "create", :event_id => @event.id}, method: :post, class: "btn btn-md btn-success btn-block" %>
+                    <% end %>
+                    <br>
+                    <%= button_to "Add a comment", new_post_path, method: :get, class: "btn btn-md btn-info btn-block" %>
+                    <br>
+                    <% if @event.posts != [] %>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-8 gedf-main">
+                                
+                                    <% @event.posts.each do |post| %>
+                                        <div class="card gedf-card">
+                                            <div class="card-header">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="h5 m-0"><%= post.user.to_s %></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="text-muted h7 mb-2">Posted on <%= post.post_date%></div>
+                                                <p class="card-text"><%= post.content %></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    <% end %>
+                                
+                             </div>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

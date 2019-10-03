@@ -1,19 +1,146 @@
-<h1> Welcome <%=@user.first_name%> </h1>
-<hr>
-<%= button_to "Add an event", new_event_path, method: :get %>
-<%= button_to "View all open event", events_path, method: :get %>
-<%= button_to "Settings", user_settings_path, method: :get %>
-<%= button_to "Logout", logout_path, method: :delete %> 
+<html>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 
-<% if @current_user %>
-    Logged In as <%= @current_user.to_s %>
-<% end %>
+        <style>
+            body {
+                background: url(https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
 
-<% if @user.events != [] %>
-<h3>Your Events</h3>
-    <ul>
-        <% @user.events.each do |event| %>
-            <li><%= link_to event.title, event_path(event) %></li>
-        <% end %>
-    </ul>
-<% end %>
+                background-color: #eeeeee;
+            }
+            .h7 {
+                font-size: 0.8rem;
+            }
+            .gedf-wrapper {
+                margin-top: 0.97rem;
+            }
+            @media (min-width: 992px) {
+                .gedf-main {
+                    padding-left: 4rem;
+                    padding-right: 4rem;
+                }
+                .gedf-card {
+                    margin-bottom: 2.77rem;
+                }
+            }
+            .dropdown-toggle::after {
+                content: none;
+                display: none;
+            }
+            body {
+                font-family: "Lato", sans-serif;
+            }
+            .sidenav {
+                height: 100%;
+                width: 0;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                right: 0;
+                background-color: #111;
+                overflow-x: hidden;
+                transition: 0.5s;
+                padding-top: 60px;
+            }
+            .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+            }
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+            .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+            @media screen and (max-height: 450px) {
+                .sidenav {padding-top: 15px;}
+                .sidenav a {font-size: 18px;}
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <%= button_to "Add an event", new_event_path, method: :get %>
+            <%= button_to "View all open event", events_path, method: :get %>
+            <%= button_to "Settings", user_settings_path, method: :get %>
+            <%= button_to "Logout", logout_path, method: :delete %> 
+        </div>
+        <p align="right"><span style="font-size:30px;cursor:pointer;color: rgb(255, 255, 255);" onclick="openNav()">&#9776;</span><p>
+
+        <script>
+            function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            }
+            function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+        <div class="container-fluid gedf-wrapper">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="media"><img src="https://picsum.photos/100/100" class="mr-3" alt="..."></div>
+                        <div class="card-body">
+                            <div class="h5">@<%= @user.username %></div>
+                            <div class="h6 text-muted"><%= @user.to_s %></div>
+                            <div class="h7">Need to add a bio column for user!</div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="h6 text-muted">Followers</div>
+                                <div class="h5">5.2342</div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="h6 text-muted">Following</div>
+                                <div class="h5">6758</div>
+                            </li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 gedf-main">
+                    <% if @user.events != [] %>
+                        <% @user.events.each do |event| %>
+                            <div class="card gedf-card">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mr-2"><img class="rounded-circle" width="45" src="https://picsum.photos/50/50"></div>
+                                            <div class="ml-2">
+                                                <div class="h5 m-0"><%= link_to event.title, event_path(event) %></div>
+                                                <div class="h7 text-muted"><%= event.location.city %>, <%= event.location.state %></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> <%= event.event_date%></div>
+                                    <p class="card-text"><%= event.content %></p>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,59 +1,80 @@
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<html>
+  <head>
+    <title>We Out - Your place to find the hippest events near you!</title> 
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <div class="navbar-brand">Travel Go</a>
-        </div>
-    </div>
-</nav>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <style>
+      body{
+        background: url(https://images.unsplash.com/photo-1533619043865-1c2e2f32ff2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
+        background-color: #444;
+        background: url(https://images.unsplash.com/photo-1533619043865-1c2e2f32ff2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);    
+      }
+      .vertical-offset-100{
+        padding-top:100px;
+      }
 
-<div class="container">
-    <center><h1>Edit Your Profile</h1></center>
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row vertical-offset-100">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <center><h3 class="panel-title">Edit Your Profile</h3></center>
+              </div>
+              <div class="panel-body">
 
-    <% if flash[:errors] %>
-    <div class="alert alert-danger" role="alert">
-        <ul>
-        <% flash[:errors].each do |error| %>
-            <li><%= error %></li>
-        <% end %>
-        </ul>
-        </div>
-    <% end %>
+              
+              <fieldset>
+              
+              <%= form_for @user do |f| %>
 
-    <div class = "row">
-        <div class = "col-md-6 col-md-offset-3">
-            <%= form_for @user do |f| %>
-
-                <div class="form-field">
-                    <%= f.label :first_name %>
-                    <%= f.text_field :first_name, class: 'form-control'%>
+                <div class="form-group">
+                    <%= f.text_field :first_name, class: 'form-control', placeholder: "First Name" %>
                 </div>
 
-                <div class="form-field">
-                    <%= f.label :last_name %>
-                    <%= f.text_field :last_name, class: 'form-control'%>
+                <div class="form-group">
+                    <%= f.text_field :last_name, class: 'form-control', placeholder: "Last Name" %>
                 </div>
 
-                <div class="form-field">
-                    <%= f.label :username %>
-                    <%= f.text_field :username, class: 'form-control'%>
+                <div class="form-group">
+                    <%= f.text_field :username, class: 'form-control', placeholder: "Username" %>
                 </div>
 
-                <div class="form-field">
-                    <%= f.label :password %>
-                    <%= f.password_field :password, class: 'form-control'%>
+                <div class="form-group">
+                    <%= f.password_field :password, class: 'form-control', placeholder: "Password" %>
                 </div>
-                <br>
-                <div class="form-field">
-                    <%= f.submit "Update", class: "btn btn-primary" %>
+                
+
+                <% if flash[:errors] %>
+              <div class="alert alert-danger" role="alert">
+              <ul>
+                <% flash[:errors].each do |error| %>
+                  <li class="error"><%= error %></li>
+                <% end %>
+              </ul>
+              </div>
+          <% end %>
+
+
+                <div class="form-group">
+                    <%= f.submit "Update", class: "btn btn-lg btn-success btn-block" %>
                 </div>
             <% end %>
-            <br>
-            <%= button_to "Delete my profile", user_path(@current_user), method: :delete, class: "btn btn-primary"  %>
+
+             <%= button_to "Delete my profile", user_path(@current_user), method: :delete, class: "btn btn-lg btn-danger btn-block", data: { confirm: "Are you sure?" }  %>
+                <br>
+                <center><%= link_to "Cancel", user_path(@current_user) %></center>
+
+              </fieldset>
+
+
+              </div>
+            </div>
         </div>
+      </div>
     </div>
-</div>
-
-
+  </body>
+</html>

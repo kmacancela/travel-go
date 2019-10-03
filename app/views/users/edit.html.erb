@@ -1,0 +1,59 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand">Travel Go</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <center><h1>Edit Your Profile</h1></center>
+
+    <% if flash[:errors] %>
+    <div class="alert alert-danger" role="alert">
+        <ul>
+        <% flash[:errors].each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+        </ul>
+        </div>
+    <% end %>
+
+    <div class = "row">
+        <div class = "col-md-6 col-md-offset-3">
+            <%= form_for @user do |f| %>
+
+                <div class="form-field">
+                    <%= f.label :first_name %>
+                    <%= f.text_field :first_name, class: 'form-control'%>
+                </div>
+
+                <div class="form-field">
+                    <%= f.label :last_name %>
+                    <%= f.text_field :last_name, class: 'form-control'%>
+                </div>
+
+                <div class="form-field">
+                    <%= f.label :username %>
+                    <%= f.text_field :username, class: 'form-control'%>
+                </div>
+
+                <div class="form-field">
+                    <%= f.label :password %>
+                    <%= f.password_field :password, class: 'form-control'%>
+                </div>
+                <br>
+                <div class="form-field">
+                    <%= f.submit "Update", class: "btn btn-primary" %>
+                </div>
+            <% end %>
+            <br>
+            <%= button_to "Delete my profile", user_path(@current_user), method: :delete, class: "btn btn-primary"  %>
+        </div>
+    </div>
+</div>
+
+

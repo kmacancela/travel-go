@@ -1,5 +1,6 @@
 <h1> <%= @event.title %> </h1>
 <hr>
+<%= button_to "Back to my Profile", user_path(@current_user), method: :get %>
 <%= @location.city%> <%= @location.state %> <br>
 <%=@location.country%>
 <p>
@@ -20,6 +21,11 @@
     <% if @event.posts != [] %>
         <% @event.posts.each do |post| %>
             <%= post.content %>
+
+            <% if post.user == @current_user %>
+                <%= button_to "Delete my comment", post_path(post), method: :delete %>
+            <% end %>
+
             <hr>
         <% end %>
     <% else %>

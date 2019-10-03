@@ -10,4 +10,11 @@ class PostsController < ApplicationController
         redirect_to event_path(post.event)
     end
 
+    def destroy
+        post = Post.find(params[:id])
+        event = Event.find(post.event.id)
+        post.destroy
+        redirect_to event_path(event)
+    end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_175543) do
+ActiveRecord::Schema.define(version: 2019_10_03_035120) do
 
   create_table "attendees", force: :cascade do |t|
     t.integer "user_id"
@@ -25,13 +25,6 @@ ActiveRecord::Schema.define(version: 2019_10_02_175543) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "event_categories", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "events", force: :cascade do |t|
     t.integer "location_id"
     t.string "title"
@@ -40,6 +33,8 @@ ActiveRecord::Schema.define(version: 2019_10_02_175543) do
     t.string "start_time"
     t.string "end_time"
     t.string "event_date"
+    t.integer "category_id"
+    t.string "content"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -47,6 +42,16 @@ ActiveRecord::Schema.define(version: 2019_10_02_175543) do
     t.string "state"
     t.string "country"
     t.integer "zipcode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+    t.string "post_date"
+    t.string "post_time"
+    t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

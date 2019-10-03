@@ -56,3 +56,5 @@ Stubhub API: https://beta-developer.stubhub.com/searchlocations/apis/get/search/
 <!-- - Add password_digest to User table -->
 - Need to give User the option to choose category and then populate event_category in controller
 - Maybe remove Location table and add zipcode as attribute in Event table
+<!-- - Need to add content for Event table -->
+- Need to add created_by for Event table so the user who created event can delete the event (need to delete the posts along with it)

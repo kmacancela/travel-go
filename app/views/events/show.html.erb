@@ -3,6 +3,9 @@
 <%= @location.city%> <%= @location.state %> <br>
 <%=@location.country%>
 <p>
+    <%= @event.content %>
+</p>
+<p>
     <% if !@current_user.events.include?(@event) %>
         
         <%= button_to "I wanna go!", {:controller => "attendees", :action => "create", :event_id => @event.id}, method: :post %>
@@ -10,6 +13,19 @@
         You're going to this event already!
         <%= button_to "Remove from my calendar", attendee_path, method: :delete %>
     <% end %>
+</p>
+
+<p> 
+    <h3>Comments</h3>
+    <% if @event.posts != [] %>
+        <% @event.posts.each do |post| %>
+            <%= post.content %>
+            <hr>
+        <% end %>
+    <% else %>
+        No comments to show!
+    <% end %>
+    <%= button_to "Add a comment", new_post_path, method: :get %>
 </p>
 
 

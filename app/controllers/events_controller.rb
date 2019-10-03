@@ -1,8 +1,7 @@
 class EventsController < ApplicationController
     # before_action :set_event only: [:show, :destroy]
 
-    # Need to get events that current user does not already have
-    # Then need to also add events that do not clash with current user's current events
+    # Need to also add events that do not clash with current user's current events
     def index
         all_events = Event.all
         @events = all_events.select do |event|
@@ -13,19 +12,18 @@ class EventsController < ApplicationController
     def show
         @event = Event.find(params[:id])
         @location = @event.location
+        session[:event_id] = @event.id
     end
 
     def new 
         @event = Event.new
         @location = Location.new
+        @locations = Location.all
+        @categories = Category.all
     end
 
     def create 
-        # byebug
-        location = Location.find_by(zipcode: 10011) # Need to fix this
-        event = Event.create(events_params.merge(location_id: location.id))
-        category = Category.find_by(name: "Music") # Need to fix this 
-        EventCategory.create(event_id: event.id, category_id: category.id)
+        event = Event.create(events_params)
         Attendee.create(user_id: @current_user.id, event_id: event.id)
         redirect_to user_path(@current_user)
     end 
@@ -37,7 +35,7 @@ class EventsController < ApplicationController
     private
 
     def events_params
-        params.require(:event).permit(:title, :start_time, :end_time, :event_date)
+        params.require(:event).permit(:title, :start_time, :end_time, :event_date, :location_id, :category_id, :content)
     end
 
 end

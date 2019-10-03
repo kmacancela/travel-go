@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-EventCategory.destroy_all
+# EventCategory.destroy_all
 Attendee.destroy_all
 Event.destroy_all
 User.destroy_all
@@ -32,20 +32,22 @@ cat3 = Category.create(name: "Sports")
 cat4 = Category.create(name: "Nightlife")
 cat5 = Category.create(name: "Community")
 
-e1 = Event.create(location_id: l2.id, title: "South Beach Bonfire", start_time: "7:00PM", end_time: "11:00PM", event_date: "10-10-2019")
-e2 = Event.create(location_id: l1.id, title: "Chelsea Art Gallery Opening Reception", start_time: "6:00PM", end_time: "9:00PM", event_date: "10-10-2019")
-e3 = Event.create(location_id: l4.id, title: "Cheese & Wine Festival", start_time: "12:00PM", end_time: "6:00PM", event_date: "10-10-2019")
-e4 = Event.create(location_id: l5.id, title: "Rooftop Party", start_time: "10:00PM", end_time: "4:00AM", event_date: "10-12-2019")
-e5 = Event.create(location_id: l3.id, title: "Cooking Class", start_time: "1:00PM", end_time: "4:00PM", event_date: "10-12-2019")
-e6 = Event.create(location_id: l6.id, title: "Diamond Head Hike", start_time: "9:00AM", end_time: "12:00PM", event_date: "10-13-2019")
+e1 = Event.create(location_id: l2.id, title: "South Beach Bonfire", start_time: "7:00PM", end_time: "11:00PM", event_date: "10-10-2019", category_id: 1, content: "Blah Blah Blah")
+e2 = Event.create(location_id: l1.id, title: "Chelsea Art Gallery Opening Reception", start_time: "6:00PM", end_time: "9:00PM", event_date: "10-10-2019", category_id: 2, content: "Blah Blah Blah")
+e3 = Event.create(location_id: l4.id, title: "Cheese & Wine Festival", start_time: "12:00PM", end_time: "6:00PM", event_date: "10-10-2019", category_id: 5, content: "Blah Blah Blah")
+e4 = Event.create(location_id: l5.id, title: "Rooftop Party", start_time: "10:00PM", end_time: "4:00AM", event_date: "10-12-2019", category_id: 4, content: "Blah Blah Blah")
+e5 = Event.create(location_id: l3.id, title: "Cooking Class", start_time: "1:00PM", end_time: "4:00PM", event_date: "10-12-2019", category_id: 5, content: "Blah Blah Blah")
+e6 = Event.create(location_id: l6.id, title: "Diamond Head Hike", start_time: "9:00AM", end_time: "12:00PM", event_date: "10-13-2019", category_id: 3, content: "Blah Blah Blah")
 
 
-ec1 = EventCategory.create(event_id: 1, category_id: cat1.id)
+# ec1 = EventCategory.create(event_id: 1, category_id: cat1.id)
 
 
 # Adding another table called Attendee
 a1 = Attendee.create(user_id: 1, event_id: 1)
 a2 = Attendee.create(user_id: 3, event_id: 3)
 a3 = Attendee.create(user_id: 4, event_id: 5)
+
+p1 = Post.create(event_id: 1, user_id: 1, post_date: "29-10-2019", post_time: "10:00AM", content: "Anyone else going to this?")
 
 puts "It had been seeded!"

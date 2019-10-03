@@ -3,6 +3,8 @@ class User < ApplicationRecord
     validates :username, uniqueness: true
     has_many :attendees
     has_many :events, through: :attendees
+    has_many :posts
+    # has_many :events, through: :posts
 
     def to_s
         self.first_name + " " + self.last_name

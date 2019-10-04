@@ -1,76 +1,79 @@
 <html>
   <head>
     <title>We Out - Your place to find the hippest events near you!</title> 
-
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     
+    <link href="https://fonts.googleapis.com/css?family=Farro&display=swap" rel="stylesheet">
+  
     <style>
       body{
         background: url(https://images.unsplash.com/photo-1533619043865-1c2e2f32ff2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
         background-color: #444;
-        background: url(https://images.unsplash.com/photo-1533619043865-1c2e2f32ff2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);    
       }
       .vertical-offset-100{
         padding-top:100px;
       }
-
+      .panel {
+        border: 0;
+      }
+      .panel-transparent {
+        background-color: rgba(245, 245, 245, 0.4);
+      }
+      .panel-transparent .panel-heading{
+        background: rgba(122, 130, 136, 0.2)!important;
+      }
+      .panel-transparent .panel-body{
+        background: rgba(46, 51, 56, 0.2)!important;
+      }
+      h1 {
+        background: url('img/tape.png') 0 0 repeat-x;
+        color: white;
+        font-family: 'Farro', cursive;
+        font-size: 200%;
+        animation: blur .75s
+      }
     </style>
   </head>
   <body>
     <div class="container">
-        <div class="row vertical-offset-100">
-          <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <center><h3 class="panel-title">Please sign up</h3></center>
-              </div>
+      <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+          <center><h1>Sign up today to find events near you!</h1></center>
+            <div class="panel panel-primary panel-transparent">
               <div class="panel-body">
-
-              
-              <fieldset>
-              
-              <%= form_for @user do |f| %>
-
-                <div class="form-group">
+              <h1>
+                <%= form_for @user do |f| %>
+                  <div class="form-group">
                     <%= f.text_field :first_name, class: 'form-control', placeholder: "First Name" %>
-                </div>
+                  </div>
 
-                <div class="form-group">
+                  <div class="form-group">
                     <%= f.text_field :last_name, class: 'form-control', placeholder: "Last Name" %>
-                </div>
+                  </div>
 
-                <div class="form-group">
+                  <div class="form-group">
                     <%= f.text_field :username, class: 'form-control', placeholder: "Username" %>
-                </div>
+                  </div>
 
-                <div class="form-group">
+                  <div class="form-group">
                     <%= f.password_field :password, class: 'form-control', placeholder: "Password" %>
-                </div>
-                
+                  </div>      
 
-                <% if flash[:errors] %>
-              <div class="alert alert-danger" role="alert">
-              <ul>
-                <% flash[:errors].each do |error| %>
-                  <li class="error"><%= error %></li>
+                  <% if flash[:errors] %>
+                    <div class="alert alert-danger" role="alert">
+                      <% flash[:errors].each do |error| %>
+                        <li class="error"><%= error %></li>
+                      <% end %>
+                    </div>
+                  <% end %>
+                  </h1>
+                  <h1> <%= f.submit "Create my free account", class: "btn btn-md btn-success btn-block" %> </h1>
                 <% end %>
-              </ul>
-              </div>
-          <% end %>
-
-
-                <div class="form-group">
-                    <%= f.submit "Create my account", class: "btn btn-lg btn-success btn-block" %>
-                </div>
-            <% end %>
-
-              </fieldset>
-
-
+                <h1> <%= link_to "Return to log in", login_path, class: "btn btn-md btn-warning btn-block"%> </h1>
               </div>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-  </body>
+    </body>
 </html>

@@ -11,18 +11,28 @@
         crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Farro&display=swap" rel="stylesheet">
 
         <style>
             body {
                 background: url(https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
-
                 background-color: #eeeeee;
+            }
+            h2 {
+                color: teal;
+                font-family: 'Farro', cursive;
+                font-size: 200%;
+                animation: blur .75s
             }
             .h7 {
                 font-size: 0.8rem;
             }
+            .foo {
+                color: red;
+            }
             .gedf-wrapper {
                 margin-top: 0.97rem;
+                padding-left: 2rem;
             }
             @media (min-width: 992px) {
                 .gedf-main {
@@ -47,21 +57,21 @@
                 z-index: 1;
                 top: 0;
                 right: 0;
-                background-color: #111;
+                background-color: #f1f1f1;
                 overflow-x: hidden;
                 transition: 0.5s;
                 padding-top: 60px;
             }
             .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
+                padding: 0px 0px 0px 0px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
             }
             .sidenav a:hover {
-                color: #f1f1f1;
+                color: #818181;
             }
             .sidenav .closebtn {
                 position: absolute;
@@ -74,59 +84,70 @@
                 .sidenav {padding-top: 15px;}
                 .sidenav a {font-size: 18px;}
             }
+            .card {
+                border: 0;
+            }
+            .card-transparent {
+                background-color: rgba(245, 245, 245, 0.8);
+            }
+            .card-transparent .card-heading{
+                background: rgba(122, 130, 136, 0.2)!important;
+            }
+            .card-transparent .card-body{
+                background: rgba(46, 51, 56, 0.2)!important;
+            }
         </style>
     </head>
     <body>
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <%= button_to "Add an event", new_event_path, method: :get %>
-            <%= button_to "View all open event", events_path, method: :get %>
-            <%= button_to "Settings", user_settings_path, method: :get %>
-            <%= button_to "Logout", logout_path, method: :delete %> 
+            <%= link_to "Add an event", new_event_path, method: :get %>
+            <%= link_to "View all open event", events_path, method: :get %>
+            <%= link_to "Settings", user_settings_path, method: :get %>
+            <%= link_to "Logout", logout_path, method: :delete %> 
         </div>
-        <p align="right"><span style="font-size:30px;cursor:pointer;color: rgb(255, 255, 255);" onclick="openNav()">&#9776;</span><p>
+        <p align="right"><span style="font-size:30px;cursor:pointer;color: rgb(255, 255, 255);padding: 15px 15px 15px 32px;" onclick="openNav()">&#9776;</span><p>
 
         <script>
             function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("mySidenav").style.width = "250px";
             }
             function closeNav() {
-            document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("mySidenav").style.width = "0";
             }
         </script>
+
         <div class="container-fluid gedf-wrapper">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="media"><img src="https://picsum.photos/100/100" class="mr-3" alt="..."></div>
+                <div class="col-md-2">
+                    <div class="card card-primary card-transparent">
+                        <div class="card-body media">
+                            <img class="rounded-circle" width="160" src="https://picsum.photos/100/100" class="mr-3">
+                        </div>
                         <div class="card-body">
-                            <div class="h5">@<%= @user.username %></div>
-                            <div class="h6 text-muted"><%= @user.to_s %></div>
+                            <h2><div class="h5"><%= @user.to_s %></div></h2>
+                            <div class="h6 text-muted">@<%= @user.username %></div>
                             <div class="h7">Need to add a bio column for user!</div>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <div class="h6 text-muted">Followers</div>
-                                <div class="h5">5.2342</div>
+                                <div class="h6 text-muted">Events Following</div>
+                                <div class="h5"><%= @user.events.count %></div>
+                                <div class="foo"> <%= link_to "Add an event", new_event_path, method: :get %> </div>
                             </li>
-                            <li class="list-group-item">
-                                <div class="h6 text-muted">Following</div>
-                                <div class="h5">6758</div>
-                            </li>
-                            <li class="list-group-item">Vestibulum at eros</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-8 gedf-main">
                     <% if @user.events != [] %>
                         <% @user.events.each do |event| %>
-                            <div class="card gedf-card">
+                            <div class="card gedf-card card-transparent">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="mr-2"><img class="rounded-circle" width="45" src="https://picsum.photos/50/50"></div>
                                             <div class="ml-2">
-                                                <div class="h5 m-0"><%= link_to event.title, event_path(event) %></div>
+                                                <h2> <div class="h5 m-1"><%= link_to event.title, event_path(event) %></div> </h2>
                                                 <div class="h7 text-muted"><%= event.location.city %>, <%= event.location.state %></div>
                                             </div>
                                         </div>

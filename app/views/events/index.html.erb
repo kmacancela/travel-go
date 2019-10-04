@@ -3,6 +3,7 @@
         <title>We Out - Your place to find the hippest events near you!</title> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="https://fonts.googleapis.com/css?family=Farro&display=swap" rel="stylesheet">
         
         <style>
             body{
@@ -10,7 +11,20 @@
                 background-color: #444;
             }
             .vertical-offset-100{
-                padding-top:100px;
+                padding-top:50px;
+            }
+            h1 {
+                background: url('img/tape.png') 0 0 repeat-x;
+                color: white;
+                font-family: 'Farro', cursive;
+                font-size: 300%;
+                animation: blur .75s
+            }
+            .panel-transparent {
+                background-color: rgba(245, 245, 245, 0.9);
+            }
+            .panel-transparent .panel-heading{
+                background: rgba(122, 130, 136, 0.2)!important;
             }
         </style>
     </head>
@@ -18,14 +32,17 @@
         <div class="container">
             <div class="row vertical-offset-100">
                 <div class="col-md-10 col-md-offset-1">
-
-                    <%= @events.each do |event| %>
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><center><h1 class="panel-title"><%= link_to event.title, event_path(event) %></h1></center></div>
-                            <div class="panel-body">
-                                Location: <%= event.location.city %>
-                                <br><br>
-                                <p><h4><%= event.content %></h4></p>
+                    <center><h1>All Events</h1></center>
+                    <% @events.each do |event| %>
+                        <div class="panel panel-default panel-transparent">
+                            <div class="panel-heading">
+                                <div class="h5 m-0">
+                                    <center><h1 class="panel-title">
+                                        <%= link_to event.title, event_path(event) %>
+                                        <br>
+                                        <%= event.location.city %>
+                                    </h1></center>
+                                </div>
                             </div>
                         </div>
                     <% end %>

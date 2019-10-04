@@ -7,21 +7,33 @@
         
         <style>
             body{
-                background: url(https://images.unsplash.com/photo-1456743625079-86a97ff8bc86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
+                background: url(https://images.unsplash.com/photo-1496568738682-da9d7fa2f12d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80) no-repeat center center fixed;
                 background-color: #444;
             }
             .vertical-offset-100{
                 padding-top:50px;
             }
             h1 {
-                background: url('img/tape.png') 0 0 repeat-x;
                 color: white;
                 font-family: 'Farro', cursive;
                 font-size: 300%;
                 animation: blur .75s
             }
+            h3 {
+                color: white;
+                font-family: 'Farro', cursive;
+                font-size: 200%;
+                animation: blur .75s
+            }
+            h5 {
+                color: white;
+                font-family: 'Farro', cursive;
+                font-size: 100%;
+                animation: blur .75s
+            }
             .panel-transparent {
-                background-color: rgba(245, 245, 245, 0.9);
+                background-color: rgba(245, 245, 245, 0.6);
+                border:0
             }
             .panel-transparent .panel-heading{
                 background: rgba(122, 130, 136, 0.2)!important;
@@ -33,22 +45,25 @@
             <div class="row vertical-offset-100">
                 <div class="col-md-10 col-md-offset-1">
                     <center><h1>All Events</h1></center>
-                    <% @events.each do |event| %>
-                        <div class="panel panel-default panel-transparent">
-                            <div class="panel-heading">
-                                <div class="h5 m-0">
-                                    <center><h1 class="panel-title">
-                                        <%= link_to event.title, event_path(event) %>
-                                        <br>
-                                        <%= event.location.city %>
-                                    </h1></center>
+
+                        <% @events.each do |event| %>
+                            <div class="panel panel-default panel-transparent">
+                                <a href="<%= event_path(event) %>" style="text-decoration:none">
+                                <div class="panel-heading">
+                                    <div class="h5 m-0">
+                                        <center><h1 class="panel-title">
+                                            <h3><%= event.title %></h3>
+                                            <h5><%= event.location.city %></h5>
+                                        </h1></center>
+                                    </div>
                                 </div>
+                                </a>
                             </div>
-                        </div>
-                    <% end %>
+                        <% end %>
 
                 </div>
             </div>
         </div>
     </body>
 </html>
+ 

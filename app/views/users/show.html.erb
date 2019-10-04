@@ -18,17 +18,30 @@
                 background: url(https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
                 background-color: #eeeeee;
             }
+            h1 {
+                background: url('img/tape.png') 0 0 repeat-x;
+                color: white;
+                font-family: 'Farro', cursive;
+                font-size: 200%;
+                animation: blur .75s
+            }
             h2 {
                 color: teal;
                 font-family: 'Farro', cursive;
                 font-size: 200%;
                 animation: blur .75s
             }
+            h3 {
+                color: white;
+                font-family: 'Farro', cursive;
+                font-size: 100%;
+                animation: blur .75s;
+            }
+            a {
+                text-decoration:none;
+            }
             .h7 {
                 font-size: 0.8rem;
-            }
-            .foo {
-                color: red;
             }
             .gedf-wrapper {
                 margin-top: 0.97rem;
@@ -101,8 +114,9 @@
     <body>
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <%= link_to "Add an event", new_event_path, method: :get %>
-            <%= link_to "View all open event", events_path, method: :get %>
+            <%= link_to "Back to profile", user_path(@current_user), method: :get %>
+            <%= link_to "Add a new event", new_event_path, method: :get %>
+            <%= link_to "View all open event", search_path, method: :get %>
             <%= link_to "Settings", user_settings_path, method: :get %>
             <%= link_to "Logout", logout_path, method: :delete %> 
         </div>
@@ -122,18 +136,17 @@
                 <div class="col-md-2">
                     <div class="card card-primary card-transparent">
                         <div class="card-body media">
-                            <img class="rounded-circle" width="160" src="https://picsum.photos/100/100" class="mr-3">
+                            <img class="rounded-circle" width="160" src="https://picsum.photos/id/64/160" class="mr-3">
                         </div>
                         <div class="card-body">
                             <h2><div class="h5"><%= @user.to_s %></div></h2>
                             <div class="h6 text-muted">@<%= @user.username %></div>
-                            <div class="h7">Need to add a bio column for user!</div>
+                            
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <div class="h6 text-muted">Events Following</div>
                                 <div class="h5"><%= @user.events.count %></div>
-                                <div class="foo"> <%= link_to "Add an event", new_event_path, method: :get %> </div>
                             </li>
                         </ul>
                     </div>
@@ -147,7 +160,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="mr-2"><img class="rounded-circle" width="45" src="https://picsum.photos/50/50"></div>
                                             <div class="ml-2">
-                                                <h2> <div class="h5 m-1"><%= link_to event.title, event_path(event) %></div> </h2>
+                                                <h3> <div class="h5 m-1"><%= link_to event.title, event_path(event) %></div> </h3>
                                                 <div class="h7 text-muted"><%= event.location.city %>, <%= event.location.state %></div>
                                             </div>
                                         </div>
@@ -159,6 +172,8 @@
                                 </div>
                             </div>
                         <% end %>
+                    <% else %>
+                        <h1>Sign up to events by clicking the side menu!</h1>
                     <% end %>
                 </div>
             </div>

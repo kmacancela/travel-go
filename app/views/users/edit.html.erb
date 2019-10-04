@@ -6,7 +6,7 @@
     
     <style>
       body{
-        background: url(https://images.unsplash.com/photo-1533619043865-1c2e2f32ff2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
+        background: url(https://images.unsplash.com/photo-1528991281749-0092cfc77c6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1550&q=80);
         background-color: #444;
       }
       .vertical-offset-100{
@@ -71,7 +71,7 @@
                 <% end %>
 
                 <h1> <%= button_to "Delete my profile", user_path(@current_user), method: :delete, class: "btn btn-md btn-danger btn-block", data: { confirm: "Are you sure?" }  %> </h1>
-                <center><%= link_to "Cancel", user_path(@current_user) %></center>
+                <h1> <%= link_to "Cancel", user_path(@current_user), class: "btn btn-md btn-warning btn-block" %> </h1>
               </div>
             </div>
           </div>

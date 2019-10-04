@@ -1,9 +1,61 @@
-<h1> Search for events in your area  </h1>
+<html>
+    <head>
+        <title>We Out - Your place to find the hippest events near you!</title> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="https://fonts.googleapis.com/css?family=Farro&display=swap" rel="stylesheet">
 
-<ul>
-<% @locations.each do |location| %>
-<li>
-<%= link_to location.city, location_path(location) %>
-</li>
-<% end %>
-</ul>
+        <style>
+            body{
+                background: url(https://images.unsplash.com/photo-1496568738682-da9d7fa2f12d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80) no-repeat center center fixed;
+                background-color: #444;
+            }
+            .vertical-offset-100{
+                padding-top:100px;
+            }
+            h1 {
+                color: white;
+                font-family: 'Farro', cursive;
+                font-size: 300%;
+                animation: blur .75s
+            }
+            .panel-transparent {
+                background-color: rgba(245, 245, 245, 0.3);
+            }
+            .panel-transparent .panel-heading{
+                background: rgba(122, 130, 136, 0.2)!important;
+            }
+            .panel-height {
+                height: 100px;
+            }
+            .panel-body {
+                padding-top:30px;
+                color: white;
+                font-family: 'Farro', cursive;
+                font-size: 300%;
+                
+            }
+        </style>
+    </head>
+     <body>
+        <div class="container">
+            <div class="row vertical-offset-100">
+                <div class="col-md-10 col-md-offset-1">
+                    <% @locations.each do |location| %>
+                        <div class="panel panel-default panel-transparent" style="border:0;">
+                            <a href="<%= location_path(location) %>" style="text-decoration:none">
+                            <div class="panel-heading">
+                                <div class="h5 m-0">
+                                    <center><div class="panel-body panel-height">
+                                        <%= location.city %>
+                                    </div></center>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

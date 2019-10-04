@@ -3,6 +3,7 @@
     <title>We Out - Your place to find the hippest events near you!</title> 
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://fonts.googleapis.com/css?family=Farro&display=swap" rel="stylesheet">
     
     <style>
       body{
@@ -11,6 +12,15 @@
       }
       .vertical-offset-100{
         padding-top:100px;
+      }
+      h2 {
+        color: teal;
+        font-family: 'Farro', cursive;
+        font-size: 200%;
+        animation: blur .75s
+      }
+      .panel-title {
+        padding-top:10px;
       }
 
     </style>
@@ -21,11 +31,11 @@
           <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <center><h3 class="panel-title">Add a new event</h3></center>
+                <center><h2 class="panel-title">Add a new event</h2></center>
               </div>
               <div class="panel-body">
               
-              <fieldset>
+              <h2>
               <%= form_for @event do |f| %>
                 <div class="form-group">
                     <%= f.text_field :title, class: 'form-control', placeholder: "Title of Event" %>
@@ -35,11 +45,11 @@
                     <%= f.date_field :event_date, class: 'form-control' %>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group form-control" style="border:0;">
                     <%= f.collection_select :location_id, @locations, :id, :city %>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group form-control" style="border:0;">
                     <%= f.collection_select :category_id, @categories, :id, :name %>
                 </div>
 
@@ -57,16 +67,12 @@
               </ul>
               </div>
           <% end %>
-
-
+          </h2>
                 <div class="form-group">
-                    <%= f.submit "Create event", class: "btn btn-lg btn-success btn-block" %>
-                    <br>
-                    <center><%= link_to "Back to my profile", user_path(@current_user) %></center>
+                    <h2><%= f.submit "Create event", class: "btn btn-md btn-success btn-block" %></h2>
+                    <h2><center><%= link_to "Back to my profile", user_path(@current_user), class: "btn btn-md btn-warning btn-block"  %></center></h2>
                 </div>
             <% end %>
-
-              </fieldset>
 
 
               </div>

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/users/:id/settings", to: "users#edit", as: "user_settings"
   patch "/users/:id", to: "users#update"
+  
+  get "/search", to: "sessions#show", as: "search"
 
 
 

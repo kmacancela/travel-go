@@ -26,14 +26,13 @@
                 background: rgba(122, 130, 136, 0.2)!important;
             }
             .panel-height {
-                height: 100px;
+                height: 150px;
             }
             .panel-body {
-                padding-top:30px;
+                padding-top:50px;
                 color: white;
                 font-family: 'Farro', cursive;
                 font-size: 300%;
-                
             }
         </style>
     </head>
@@ -42,22 +41,38 @@
             <div class="row vertical-offset-100">
                 <div class="col-md-10 col-md-offset-1">
 
-                    <% @categories.each do |category| %>
-                        <div class="panel panel-default panel-transparent" style="border:0;">
-                            <a href="<%= category_path(category) %>" style="text-decoration:none">
+                    <div class="panel panel-default panel-transparent" style="border:0">
+                        <a href="<%= categories_path %>" style="text-decoration:none">
                             <div class="panel-heading">
                                 <div class="h5 m-0">
-                                    <center><div class="panel-body panel-height">
-                                        <%= category.name %>
-                                    </div></center>
+                                    <center><div class="panel-body panel-height">Search by Category</div></center>
                                 </div>
                             </div>
-                            </a>
-                        </div>
-                    <% end %>
+                        </a>
+                    </div>
 
+                    <div class="panel panel-default panel-transparent" style="border:0">
+                        <a href="<%= locations_path %>" style="text-decoration:none">
+                            <div class="panel-heading">
+                                <div class="h5 m-0">
+                                    <center><div class="panel-body panel-height">Search by Location</div></center>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="panel panel-default panel-transparent" style="border:0">
+                        <a href="<%= events_path %>" style="text-decoration:none">
+                            <div class="panel-heading">
+                                <div class="h5 m-0">
+                                    <center><div class="panel-body panel-height">View All Events</div></center>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
 </html>
+

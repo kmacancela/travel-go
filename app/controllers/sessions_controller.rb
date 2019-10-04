@@ -6,6 +6,10 @@ class SessionsController < ApplicationController
     #   # get them back to the page they were on
     #   redirect_to events_path
     # end
+
+    def show
+      @events = Event.all
+    end
   
     def new
     end

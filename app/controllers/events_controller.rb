@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     # Need to also add events that do not clash with current user's current events
     def index
         all_events = Event.all
-        @events = all_events.select do |event|
+        @events = all_events.select do |event| 
             !event.users.include?(@current_user)
         end
     end
@@ -30,6 +30,7 @@ class EventsController < ApplicationController
 
     def destroy
         @event.destroy
+        Event.save
     end
 
     private
@@ -37,7 +38,5 @@ class EventsController < ApplicationController
     def events_params
         params.require(:event).permit(:title, :event_date, :location_id, :category_id, :content)
     end
-
-    
 
 end
